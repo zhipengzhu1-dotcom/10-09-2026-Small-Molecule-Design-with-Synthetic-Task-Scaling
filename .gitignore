@@ -63,3 +63,9 @@ desktop.ini
 # committed — it is CC BY 4.0, which permits redistribution.
 References/
 *.pdf
+
+# --- Unsloth / training build artifacts ------------------------------------------------------
+# Unsloth writes regex-rewritten copies of TRL's trainers to ./unsloth_compiled_cache at import
+# time, relative to the *current working directory*. Run anything from the repo root and 2 MB of
+# generated source lands here. It is a build artifact, never an input.
+unsloth_compiled_cache/
