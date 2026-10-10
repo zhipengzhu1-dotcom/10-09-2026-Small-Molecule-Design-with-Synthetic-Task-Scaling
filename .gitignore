@@ -1,11 +1,11 @@
-# NOTE: .scratch/ is deliberately NOT ignored. It holds the wayfinder map, its tickets, the
-# paper digest and the research findings — the canonical artifacts of this project. Do not add
-# it here.
+# NOTE: docs/ is deliberately NOT ignored. It holds the paper digest and full text, the research
+# findings and the agent docs — the canonical committed artifacts of this project. The wayfinder
+# map and its tickets live on GitHub Issues, not in this repo. Do not add docs/ here.
 
 # --- Licence enforcement: ZINC seed structures must never be committed ---------------------
 # ZINC's terms forbid redistributing major portions of the database. The repo ships the
 # generation script, ZINC IDs and the sigma cache — not the structures themselves.
-# See .scratch/research/zinc-seed-source.md and the map's Known traps section.
+# See docs/research/zinc-seed-source.md and the map's Known traps section.
 data/
 seeds/
 *.smi
@@ -59,7 +59,7 @@ desktop.ini
 # --- Third-party publisher PDFs --------------------------------------------------------------
 # Kept locally for reading, excluded from version control: these are publisher-copyright PDFs
 # (e.g. ACS / J. Chem. Inf. Model.) and this repo is destined to be public. Git history is
-# permanent, so they must not enter it. The arXiv source paper in .scratch/reference/ IS
+# permanent, so they must not enter it. The arXiv source paper in docs/reference/ IS
 # committed — it is CC BY 4.0, which permits redistribution.
 References/
 *.pdf

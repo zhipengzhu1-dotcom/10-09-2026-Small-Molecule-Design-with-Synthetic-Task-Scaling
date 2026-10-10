@@ -4,8 +4,10 @@ Reproducing arXiv:2609.04735 ("Training Large Language Models for Small-Molecule
 Synthetic Task Scaling") with a **sub-8B model on one RTX 5090**, using only free and open
 software. The paper trained a 35B MoE on 32 × B200.
 
-**There is no code yet.** Work is currently planning, not building — produce decisions, not
-deliverables, until the map says otherwise.
+**There is no code in this repo yet.** Work is currently planning, not building — produce
+decisions, not deliverables, until the map says otherwise. A **`wayfinder:task` ticket is the
+map saying otherwise**: that type exists to do manual work a decision is blocked on, so
+install, run and measure as it asks, and record the result.
 
 ## Start here
 
@@ -20,12 +22,21 @@ deliverables, until the map says otherwise.
   local; do not re-fetch it, and read it by section rather than whole.
 - **Research findings** — [`docs/research/`](docs/research/): Unsloth RL capability, the open
   chemistry oracle stack, and the ZINC seed source.
+- **[The bring-up record](docs/research/rtx5090-wsl2-grpo-bringup.md)** — the pinned stack that
+  works on sm_120, plus measured VRAM, throughput, s/step and KV-cache concurrency. **Read it
+  before installing anything or quoting a hardware number**, including why `nvidia-smi` and
+  `torch` disagree about free VRAM under WDDM.
 
 ## Non-obvious constraints
 
 - **Unsloth Studio cannot do this work.** Its GUI is supervised fine-tuning only. The RL work
   runs through the Unsloth Python library under **WSL2** — vLLM, which GRPO rollouts require,
   does not run on native Windows.
+- **Run things in WSL by writing a script to a file and invoking the file:**
+  `wsl.exe -d Ubuntu-24.04 -- bash /mnt/c/.../script.sh`. PowerShell expands `$var` and pipes
+  before bash sees them, and `head`/`tail`/`grep` are not cmdlets, so inline one-liners fail in
+  ways that read like bash errors. The GRPO venv is `~/.venvs/stsc`; `sudo` needs a password
+  there, so reach for `uv`, which has covered every install so far.
 - **This repo is public.** Nothing enters git history that cannot be redistributed.
   `.gitignore` mechanically enforces the two live constraints: **ZINC seed structures** (ZINC's
   terms forbid redistributing major portions — ship the script, the IDs and the σ cache, never

@@ -59,7 +59,7 @@ the load-bearing section of this document.
 
 ## 1. What the paper requires, and why the pool defines the reward
 
-**[FACT]** from the paper (arXiv:2609.04735; `.scratch/reference/paper-2609.04735-fulltext.txt`
+**[FACT]** from the paper (arXiv:2609.04735; `docs/reference/paper-2609.04735-fulltext.txt`
 lines 242–246, 1801–1803, 1934, 1940, and digest Table A1):
 
 - Tier-1 seeds are *"a molecule randomly sampled from ZINC, a large database of commercially
@@ -376,7 +376,7 @@ three things the 25,000 figure does not:
    by task overlap.
 
 Cost of 1 M **[INFER from the measured 5.21 ms/molecule for all 217 RDKit descriptors in
-`.scratch/research/open-chem-oracle-stack.md` §3A]**: ~87 min single-core, ~15 min on 8 cores,
+`docs/research/open-chem-oracle-stack.md` §3A]**: ~87 min single-core, ~15 min on 8 cores,
 one time. A 101-descriptor subset is cheaper (~1–3 ms/molecule ⇒ 17–50 min single-core).
 
 ---
@@ -666,7 +666,7 @@ ECFP4 Tanimoto > 0.323 to the 10-molecule holdout set; dedupe; shuffle with seed
 | `guacamol_v1_test.smiles` | `.../13612757` | 11,590,126 (11.1 MB) |
 | `guacamol_v1_valid.smiles` | `.../13612766` | 3,859,125 (3.7 MB) |
 
-Counts, already measured in `.scratch/research/open-chem-oracle-stack.md` §3: **train 1,273,104 /
+Counts, already measured in `docs/research/open-chem-oracle-stack.md` §3: **train 1,273,104 /
 valid 79,568 / test 238,706 / all 1,591,378**.
 
 **Skew [INFER]:** GuacaMol applies **no MW or logP filter**, so it keeps most of ChEMBL's breadth
@@ -722,7 +722,7 @@ repo states no permission.
 - 1,432 files in one directory is fine on NTFS (contrast the map's CrossDocked 52-million-file
   warning).
 - RDKit has official `win_amd64` wheels (`pip install rdkit`), per
-  `.scratch/research/open-chem-oracle-stack.md` §3A.
+  `docs/research/open-chem-oracle-stack.md` §3A.
 - `pandas` + `pyarrow` are already installed on this machine **[MEASURED]**: pandas 3.0.3,
   pyarrow 25.0.1. **RDKit is not yet installed [MEASURED]** — `import rdkit` fails.
 
@@ -847,10 +847,10 @@ Parquet (size, and §3.5).
 
 **The paper**
 - arXiv:2609.04735 — <https://arxiv.org/html/2609.04735v1>; locally
-  `.scratch/reference/paper-2609.04735-fulltext.txt` (Eq A2/A4/A6, Table A1, Table A2, §A.1) and
-  `.scratch/reference/paper-2609.04735-digest.md`
+  `docs/reference/paper-2609.04735-fulltext.txt` (Eq A2/A4/A6, Table A1, Table A2, §A.1) and
+  `docs/reference/paper-2609.04735-digest.md`
 
 **Sibling research in this repo**
-- `.scratch/research/open-chem-oracle-stack.md` — RDKit descriptor count (217 in 2026.09.1),
+- `docs/research/open-chem-oracle-stack.md` — RDKit descriptor count (217 in 2026.09.1),
   measured per-molecule descriptor timings (`CalcMolDescriptors` = 5.21 ms), ChEMBL/GuacaMol
   licence and split sizes, Windows-native status of the whole Tier-1 stack
