@@ -1,0 +1,219 @@
+{
+ "schema_version": 1,
+ "pool": {
+  "n_pool": 1000000,
+  "sample_seed": 20261011,
+  "survivors_total": 7397090,
+  "draws_consumed": 1000000,
+  "parse_failures": 0,
+  "duplicate_zinc_ids": 0,
+  "duplicate_canonical_smiles": 25,
+  "smiles_sha256": "92c62a4eec4d04e902632f50ac0470ac143946d0ea13acba851970ca2c610a35",
+  "mw_window": [
+   300.0,
+   450.0
+  ],
+  "built_utc": "2026-10-11T10:21:06Z",
+  "elapsed_s": 12.8,
+  "source": "files.docking.org/2D (ZINC20 2D, purchasability A+B)"
+ },
+ "rdkit_version": "2026.09.1",
+ "ddof": 0,
+ "property_table": "docs/reference/table-a4-properties.md",
+ "n_numeric_properties": 100,
+ "string_property": "scaffold",
+ "descriptor_pass_seconds": 420.4,
+ "descriptor_pass_workers": 22,
+ "unparseable_in_pass": 0,
+ "names": [
+  "molecular_weight",
+  "exact_molecular_weight",
+  "heavy_atom_molecular_weight",
+  "heavy_atom_count",
+  "num_heteroatoms",
+  "tpsa",
+  "logp",
+  "molar_refractivity",
+  "labute_asa",
+  "qed",
+  "qed_alerts",
+  "fraction_csp3",
+  "hbd",
+  "num_h_acceptors",
+  "num_lipinski_h_donors",
+  "num_lipinski_h_acceptors",
+  "nhoh_count",
+  "nocount",
+  "formal_charge",
+  "num_valence_electrons",
+  "num_radical_electrons",
+  "max_estate_index",
+  "min_estate_index",
+  "num_bonds",
+  "num_rotatable_bonds",
+  "num_amide_bonds",
+  "num_brics_bonds",
+  "num_tautomers",
+  "num_atom_stereo_centers",
+  "num_unspecified_atom_stereo_centers",
+  "num_stereoisomers",
+  "atom_count_C",
+  "atom_count_H",
+  "atom_count_N",
+  "atom_count_O",
+  "atom_count_S",
+  "atom_count_F",
+  "atom_count_Cl",
+  "atom_count_Br",
+  "atom_count_P",
+  "atom_count_I",
+  "num_leadopt_disallowed_atoms",
+  "ring_count",
+  "num_aromatic_rings",
+  "num_aliphatic_rings",
+  "num_saturated_rings",
+  "num_heterocycles",
+  "num_aromatic_heterocycles",
+  "num_aromatic_carbocycles",
+  "num_saturated_heterocycles",
+  "numaliphaticcarbocycles",
+  "numaliphaticheterocycles",
+  "numsaturatedcarbocycles",
+  "num_spiro_atoms",
+  "num_bridgehead_atoms",
+  "bertz_ct",
+  "balaban_j",
+  "hall_kier_alpha",
+  "kappa1",
+  "kappa2",
+  "kappa3",
+  "chi0",
+  "chi1",
+  "chi0v",
+  "chi1v",
+  "fp_density_morgan1",
+  "fp_density_morgan2",
+  "fr_benzene",
+  "fr_halogen",
+  "fr_amide",
+  "fr_ketone",
+  "fr_ester",
+  "fr_ether",
+  "fr_aldehyde",
+  "fr_nitrile",
+  "fr_nitro",
+  "fr_sulfonamd",
+  "fr_sulfone",
+  "fr_aniline",
+  "fr_pyridine",
+  "fr_imidazole",
+  "fr_phenol",
+  "fr_COO",
+  "fr_NH2",
+  "fr_NH1",
+  "fr_NH0",
+  "fr_methoxy",
+  "fr_furan",
+  "fr_thiophene",
+  "fr_piperdine",
+  "fr_piperzine",
+  "fr_morpholine",
+  "fr_urea",
+  "fr_alkyl_halide",
+  "fr_aryl_methyl",
+  "fr_Ar_N",
+  "fr_C_O"
+ ],
+ "collinear_pairs_abs_rho_gt_0.95": [
+  {
+   "a": "num_lipinski_h_donors",
+   "b": "nhoh_count",
+   "rho": 1.0
+  },
+  {
+   "a": "num_lipinski_h_acceptors",
+   "b": "nocount",
+   "rho": 1.0
+  },
+  {
+   "a": "num_amide_bonds",
+   "b": "fr_amide",
+   "rho": 1.0
+  },
+  {
+   "a": "molecular_weight",
+   "b": "exact_molecular_weight",
+   "rho": 0.9999
+  },
+  {
+   "a": "num_aromatic_carbocycles",
+   "b": "fr_benzene",
+   "rho": 0.9998
+  },
+  {
+   "a": "heavy_atom_count",
+   "b": "chi1",
+   "rho": 0.9922
+  },
+  {
+   "a": "molecular_weight",
+   "b": "heavy_atom_molecular_weight",
+   "rho": 0.9895
+  },
+  {
+   "a": "exact_molecular_weight",
+   "b": "heavy_atom_molecular_weight",
+   "rho": 0.9886
+  },
+  {
+   "a": "num_bonds",
+   "b": "chi1",
+   "rho": 0.9846
+  },
+  {
+   "a": "hbd",
+   "b": "num_lipinski_h_donors",
+   "rho": 0.9779
+  },
+  {
+   "a": "hbd",
+   "b": "nhoh_count",
+   "rho": 0.9779
+  },
+  {
+   "a": "heavy_atom_count",
+   "b": "num_bonds",
+   "rho": 0.9771
+  },
+  {
+   "a": "heavy_atom_count",
+   "b": "chi0",
+   "rho": 0.9747
+  },
+  {
+   "a": "heavy_atom_count",
+   "b": "labute_asa",
+   "rho": 0.9714
+  },
+  {
+   "a": "labute_asa",
+   "b": "chi1",
+   "rho": 0.9655
+  },
+  {
+   "a": "num_valence_electrons",
+   "b": "chi0",
+   "rho": 0.964
+  },
+  {
+   "a": "heavy_atom_count",
+   "b": "num_valence_electrons",
+   "rho": 0.9582
+  },
+  {
+   "a": "molar_refractivity",
+   "b": "labute_asa",
+   "rho": 0.9564
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "schema_version": 1,
+ "pool": {
+  "n_pool": 1000000,
+  "sample_seed": 20261011,
+  "survivors_total": 7397090,
+  "draws_consumed": 1000000,
+  "parse_failures": 0,
+  "duplicate_zinc_ids": 0,
+  "duplicate_canonical_smiles": 25,
+  "smiles_sha256": "92c62a4eec4d04e902632f50ac0470ac143946d0ea13acba851970ca2c610a35",
+  "mw_window": [
+   300.0,
+   450.0
+  ],
+  "built_utc": "2026-10-11T10:21:06Z",
+  "elapsed_s": 12.8,
+  "source": "files.docking.org/2D (ZINC20 2D, purchasability A+B)"
+ },
+ "rdkit_version": "2026.09.1",
+ "ddof": 0,
+ "property_table": "docs/reference/table-a4-properties.md",
+ "n_numeric_properties": 100,
+ "string_property": "scaffold",
+ "descriptor_pass_seconds": 420.4,
+ "descriptor_pass_workers": 22,
+ "unparseable_in_pass": 0,
+ "rule": "integer properties with sigma_y >= gate",
+ "gates": {
+  "1.8": {
+   "n": 8,
+   "survivors": [
+    "atom_count_C",
+    "atom_count_H",
+    "heavy_atom_count",
+    "num_bonds",
+    "num_rotatable_bonds",
+    "num_stereoisomers",
+    "num_tautomers",
+    "num_valence_electrons"
+   ]
+  },
+  "2.5": {
+   "n": 7,
+   "survivors": [
+    "atom_count_C",
+    "atom_count_H",
+    "heavy_atom_count",
+    "num_bonds",
+    "num_stereoisomers",
+    "num_tautomers",
+    "num_valence_electrons"
+   ]
+  },
+  "3.2": {
+   "n": 5,
+   "survivors": [
+    "atom_count_H",
+    "num_bonds",
+    "num_stereoisomers",
+    "num_tautomers",
+    "num_valence_electrons"
+   ]
+  }
+ }
+}
