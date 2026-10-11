@@ -120,3 +120,29 @@ Both faults were measured, not argued:
 Which of a molecule's BRICS bonds to break is not recoverable from one published example, so it
 is drawn uniformly — the plain reading of "randomly generated", with the published scaffold one
 of its six possible outcomes for that seed.
+
+## Result (issue #8, 2026-10-11)
+
+**Go/no-go: PASS.** 30 of 30 groups had reward spread; none discarded. 240 episodes, 15 groups
+per arm, full 15-turn budget, 11.1 min per arm.
+
+| | span | gate |
+| --- | --- | --- |
+| usable groups | **15/15** | **15/15** |
+| episodes above zero | 65.8% | 67.5% |
+| `r_obj` non-zero | 34.2% | 51.7% |
+| mode-collapse signature | 0.8% | 0.8% |
+| single-turn episodes | 0% | 0% |
+
+#16's rule applied as written: an exact tie, so **span is adopted** and #7's deviation #1 is
+withdrawn. The deciding statistic **saturated**, so the decision rests on the pre-agreed
+tie-break, not an observed difference.
+
+Secondary: high-sigma integers move `r_obj` **2.3x more often** (62.5%) than the span pool's
+integers at large (27.3%), confirming #7's gradedness argument without changing the group count.
+
+Actionable: **only 34% of 1,392 tool calls named a fully valid property list** -- half the
+rejections the task gloss transliterated, half invented conventions. Graduated into issue #20.
+The verdict holds *despite* that handicap.
+
+Full numbers in the resolution comment on issue #8.

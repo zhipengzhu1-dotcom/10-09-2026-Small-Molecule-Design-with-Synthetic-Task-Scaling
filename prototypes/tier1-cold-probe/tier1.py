@@ -476,5 +476,12 @@ def run_tool(properties_req, smiles_req, max_props=25, max_smiles=5):
         "n_smiles_requested": len(smiles_req),
         "n_smiles_invalid": len(bad_smiles),
         "all_props_valid": bool(properties_req) and not bad_props,
+        # The rejected names themselves, not just a count. Question 2 of #8 asks whether the
+        # tool is called "with a valid property list", and the probe renders tasks in the
+        # paper's gloss style ("the primary amine groups") while the tool accepts only
+        # identifiers (fr_NH2) -- so the *shape* of the failure is the finding: a gloss echoed
+        # back verbatim means the glossing is the problem, a near-miss identifier means it is
+        # not.
+        "bad_props": bad_props[:12],
     }
     return "\n".join(lines), stats
