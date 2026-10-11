@@ -48,6 +48,7 @@ def filter_stage(manifest_path: str, txt_dir: str, out_path: str) -> None:
     t0 = time.perf_counter()
     seen = kept = bad = 0
     tmp = out_path + ".part"
+    os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     with open(tmp, "w", encoding="utf-8", newline="\n") as out:
         out.write("zinc_id\tsmiles\tzinc_mwt\tzinc_logp\ttranche_file\n")
         for i, name in enumerate(names, 1):
@@ -144,6 +145,7 @@ def sample_stage(survivors: str, out_path: str, n: int, seed: int, workers: int)
         raise SystemExit(f"exhausted survivors with only {len(kept):,} parseable")
 
     # Keep the draw order (permutation order) so a prefix of the pool is itself a uniform sample.
+    os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     with open(out_path + ".part", "w", encoding="utf-8", newline="\n") as out:
         out.write("zinc_id\tcanonical_smiles\n")
         for _, zid, smi in kept:

@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# Refuse to commit a chemical-structure *dataset*. This repo is public; git history is permanent.
+#
+# ZINC's terms: "you may not redistribute major portions of ZINC without the express written
+# permission of John Irwin." The repo therefore ships the script, the ZINC IDs and the caches,
+# never the pool's SMILES.
+#
+# .gitignore already blocks structures arriving as bulk files (data/, seeds/, *.smi, *.parquet,
+# *.sdf, *.mol2). It cannot see *content*, so a seed dump written to a non-ignored path -- a
+# tasks JSONL, a sample JSON, a Python literal -- reaches a commit unopposed. This hook closes
+# that gap.
+#
+# The threshold is a count, because the licence's line is volume, not presence. A handful of
+# structures is "the results of a screen" and is both legal and already present in
+# docs/research/ (the paper's published scaffold, a file-format example). A few hundred is a
+# dataset. So single examples pass silently and bulk is refused.
+#
+# Install once per clone:  git config core.hooksPath scripts/hooks
+# Deliberate, licence-checked exception:  git commit --no-verify
+
+set -uo pipefail
+
+MAX_STRUCTURES=25
+
+# Detection runs in three stages, because any single regex is either too loose (it matches hex
+# digests and identifiers like `fp_density_morgan1`) or too tight. Measured against this repo's
+# own committed content, all three stages together give zero false positives on the caches, the
+# scripts, CLAUDE.md, GLOSSARY.md and Table A4.
+#
+#   TOK   a run of >=12 SMILES-alphabet characters. Underscores are absent from the alphabet,
+#         so `fp_density_morgan1` splits into fragments too short to survive.
+#   ANCH  one of the three shapes that appear in SMILES and essentially nowhere else:
+#         an aromatic atom + ring-closure digit (c1, n2), a bracket atom with a hydrogen count
+#         or charge ([nH], [C@@H], [O-]), or a carbonyl cluster (C(=O).
+#   STRUCT a branch or bracket character. This is what rejects a 64-character hex digest, which
+#         otherwise clears TOK and ANCH. It costs the occasional miss on a short unbranched
+#         SMILES, which is acceptable: the target is a dataset, and datasets carry branches.
+TOK='[][A-Za-z0-9()=#@+/%\\.-]{12,}'
+ANCH='([cnops][1-9]|\[[A-Za-z]{1,2}[@H0-9+-]+\]|[A-Z]\(=[ONS])'
+STRUCT='[][()=#]'
+
+# This file documents the grammar on purpose.
+EXEMPT='^scripts/hooks/pre-commit$'
+
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$staged" ] && exit 0
+
+total=0
+report=""
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  echo "$f" | grep -qE "$EXEMPT" && continue
+  # Added lines only, so pre-existing structures never block an unrelated commit.
+  n=$(git diff --cached -U0 -- "$f" \
+        | grep '^+' | grep -v '^+++' | sed 's/^+//' \
+        | grep -Eo "$TOK" | grep -E "$ANCH" | grep -Ec "$STRUCT")
+  n=${n:-0}
+  if [ "$n" -gt 0 ]; then
+    total=$((total + n))
+    report="${report}
+  ${n}	${f}"
+  fi
+done <<< "$staged"
+
+[ "$total" -le "$MAX_STRUCTURES" ] && exit 0
+
+cat >&2 <<MSG
+pre-commit: refusing to commit ${total} chemical structures (limit ${MAX_STRUCTURES}).
+
+This repo is public and git history is permanent. ZINC's terms forbid redistributing
+major portions of the database -- ship the script, the ZINC IDs and the caches, and
+keep the structures in data/ (already gitignored).
+
+  count	file${report}
+
+If this is not a ZINC seed dump -- a corpus you own, a published reference set --
+re-run with:  git commit --no-verify
+MSG
+exit 1

@@ -4,10 +4,12 @@ Reproducing arXiv:2609.04735 ("Training Large Language Models for Small-Molecule
 Synthetic Task Scaling") with a **sub-8B model on one RTX 5090**, using only free and open
 software. The paper trained a 35B MoE on 32 × B200.
 
-**There is no code in this repo yet.** Work is currently planning, not building — produce
-decisions, not deliverables, until the map says otherwise. A **`wayfinder:task` ticket is the
-map saying otherwise**: that type exists to do manual work a decision is blocked on, so
-install, run and measure as it asks, and record the result.
+**Work is planning, not building** — produce decisions, not deliverables, until the map says
+otherwise. A **`wayfinder:task` ticket is the map saying otherwise**: that type exists to do
+manual work a decision is blocked on, so install, run and measure as it asks, and record the
+result. The code that exists is the output of such tickets, not a training codebase:
+[`scripts/pool/`](scripts/pool/) builds the Tier-1 seed pool and its caches, and
+[`prototypes/`](prototypes/) holds throwaway artifacts from `wayfinder:prototype` tickets.
 
 ## Start here
 
@@ -54,11 +56,16 @@ install, run and measure as it asks, and record the result.
   `MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*'` before any `wsl.exe` call; and Git Bash's `/tmp`
   is invisible to Windows Python, so hand files between them through the scratchpad directory,
   never `/tmp`.
-- **This repo is public.** Nothing enters git history that cannot be redistributed.
-  `.gitignore` mechanically enforces the two live constraints: **ZINC seed structures** (ZINC's
-  terms forbid redistributing major portions — ship the script, the IDs and the σ cache, never
-  the SMILES) and **publisher-copyright PDFs** (kept in `References/`, which is ignored). The
-  arXiv source paper is committed because it is CC BY 4.0. Do not override these.
+- **This repo is public.** Nothing enters git history that cannot be redistributed. Two live
+  constraints: **ZINC seed structures** (ZINC's terms forbid redistributing major portions —
+  ship the script, the IDs and the σ cache, never the SMILES) and **publisher-copyright PDFs**
+  (kept in `References/`, which is ignored). The arXiv source paper is committed because it is
+  CC BY 4.0. Do not override these.
+  `.gitignore` enforces them **by path and extension only** — it cannot see content, so a seed
+  dump written to a non-ignored path still reaches a commit. [`scripts/hooks/pre-commit`](scripts/hooks/pre-commit)
+  closes that gap by counting structures in staged content; it needs
+  `git config core.hooksPath scripts/hooks` once per clone. Single published examples pass by
+  design, since the licence's line is volume, not presence.
 - The map's **Known traps** section lists the mistakes already paid for (σ caching, tool-call
   penalty warmup units, zero-advantage groups, poisoned pip package names). Read it rather than
   rediscovering them.
