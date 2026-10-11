@@ -69,6 +69,15 @@ partial credit. Continuous properties are always soft.
 The fixed set of molecules that tasks draw their seeds from, and the same set the reward's property
 statistics are measured over. One pool serves both roles so that the two can never disagree.
 
+**Objective pool**:
+The properties a task's objective property may be drawn from. Deliberately narrower than the
+constraint pool, because an objective that cannot move, or whose reward cannot register a move,
+makes a task that teaches nothing.
+
+**Constraint pool**:
+The properties a task's constraints may be drawn from. Every free property, since a constraint
+only has to be checkable, not improvable.
+
 **σ (sigma)**:
 A property's standard deviation over the seed pool. Not a tuning constant but **the unit every
 reward is expressed in**, which is why the pool's composition sets the entire reward scale and why
@@ -96,3 +105,9 @@ why the task set and σ are frozen across all of them.
 **Deviation**:
 A documented, deliberate departure from the paper, with its reason. Deviations are acceptable; the
 undocumented kind is what the portfolio bar rules out.
+
+**Fidelity loss**:
+A departure from the paper forced by something unavailable, typically a licence, rather than
+chosen. Logged in the same ledger as a deviation, but distinct from one: nobody decided it, so no
+alternative was weighed.
+_Avoid_: deviation (for a forced departure)
