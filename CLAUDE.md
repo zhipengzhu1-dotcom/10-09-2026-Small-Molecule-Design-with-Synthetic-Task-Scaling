@@ -20,6 +20,13 @@ install, run and measure as it asks, and record the result.
   vs. free. **Read this before the full text**; it is the condensed specification.
 - **[The paper full text](docs/reference/paper-2609.04735-fulltext.txt)** — 3,179 lines. Already
   local; do not re-fetch it, and read it by section rather than whole.
+- **[`GLOSSARY.md`](GLOSSARY.md)** — the project's vocabulary. Note one sharpening the paper itself
+  does not make: the thing being optimised is the **objective property**, never the "target
+  property", because **target** means the *protein* in Tier-2.
+- **[Table A4, extracted](docs/reference/table-a4-properties.md)** — all 116 property identifiers
+  with group and type, plus the split that drives the Tier-1 reward: of the 101 free RDKit
+  properties, **75 are integer (hard constraints) and only 25 continuous (soft)**. Read it before
+  reasoning about Tier-1 reward density; the full text's copy of the table is mangled.
 - **Research findings** — [`docs/research/`](docs/research/): Unsloth RL capability, the open
   chemistry oracle stack, and the ZINC seed source.
 - **[The Tier-2 docking oracle record](docs/research/tier2-docking-oracle.md)** — the chosen
