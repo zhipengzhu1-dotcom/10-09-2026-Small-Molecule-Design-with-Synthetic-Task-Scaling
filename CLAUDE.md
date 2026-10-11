@@ -22,6 +22,10 @@ install, run and measure as it asks, and record the result.
   local; do not re-fetch it, and read it by section rather than whole.
 - **Research findings** — [`docs/research/`](docs/research/): Unsloth RL capability, the open
   chemistry oracle stack, and the ZINC seed source.
+- **[The Tier-2 docking oracle record](docs/research/tier2-docking-oracle.md)** — the chosen
+  oracle (smina/Vinardo `--minimize` on a `ConstrainedEmbed` pose, MCS fallback), its measured
+  0.133 s/molecule cost, its failure contract and sign convention. **Read it before quoting a
+  docking cost**, including why the 126 s/complex figure does not apply to template docking.
 - **[The bring-up record](docs/research/rtx5090-wsl2-grpo-bringup.md)** — the pinned stack that
   works on sm_120, plus measured VRAM, throughput, s/step and KV-cache concurrency. **Read it
   before installing anything or quoting a hardware number**, including why `nvidia-smi` and
