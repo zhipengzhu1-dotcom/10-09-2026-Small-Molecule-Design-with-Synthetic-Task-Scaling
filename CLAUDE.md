@@ -40,7 +40,13 @@ install, run and measure as it asks, and record the result.
   `wsl.exe -d Ubuntu-24.04 -- bash /mnt/c/.../script.sh`. PowerShell expands `$var` and pipes
   before bash sees them, and `head`/`tail`/`grep` are not cmdlets, so inline one-liners fail in
   ways that read like bash errors. The GRPO venv is `~/.venvs/stsc`; `sudo` needs a password
-  there, so reach for `uv`, which has covered every install so far.
+  there, so reach for `uv`, which has covered every install so far (it lives at
+  `~/.local/bin/uv` and is **not** on a non-login `PATH`).
+  From the **Bash tool** (Git Bash) rather than PowerShell, two different traps apply: Git Bash
+  rewrites `/mnt/...` arguments into `C:/Program Files/Git/mnt/...`, so export
+  `MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*'` before any `wsl.exe` call; and Git Bash's `/tmp`
+  is invisible to Windows Python, so hand files between them through the scratchpad directory,
+  never `/tmp`.
 - **This repo is public.** Nothing enters git history that cannot be redistributed.
   `.gitignore` mechanically enforces the two live constraints: **ZINC seed structures** (ZINC's
   terms forbid redistributing major portions — ship the script, the IDs and the σ cache, never
